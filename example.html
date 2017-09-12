@@ -1,0 +1,59 @@
+<!--
+ * Description:  it’s  an example for jquery blockShow include
+ *
+ * @author luoxiaojian (www.qinchengshiyu@foxmail.com) 
+ * @version 1.0
+ * @timestamp 2017/9/12.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery-BlockShow Demo</title>
+    <link rel="stylesheet" href="resource/css/blockShow.css">
+    <script src="resource/plugs/jquery.min.js"></script>
+    <script src="resource/js/blockShow.js"></script>
+
+
+    <link rel="stylesheet" href="resource/plugs/bootstrap.min.css">
+    <script src="resource/plugs/bootstrap.min.js"></script>
+</head>
+<body>
+<div><h1>Jquery-BlockShow Demo</h1></div>
+    <div class="row">
+     <div id="test" class="col-md-6" style="height: 300px;border: 1px solid #ccc;background-color: #fff;border-radius: 4px;"></div>
+         <div class="col-md-5" style="margin-left:20px;">
+             <div class="row">
+                 <div id="console"  style="height: 250px;border: 1px solid #ccc;background-color: #fff;border-radius: 4px;overflow-y: scroll" ></div>
+             </div>
+             <div class="row" style="margin-top: 10px;">
+                 <button id="add">ADD</button> <button id="getAll" style="margin-left: 30px;">GET ALL</button>
+             </div>
+         </div>
+    </div>
+
+</body>
+<script>
+    //program init
+    $("#test").blocks("init", {
+        nameFiled:'value',
+        valueFiled:'key',
+        //data
+        rows:[{key:'primary',value:'primary'},
+              {key:'info',value:'info',backgroundColor:'#00acd6',borderColor:'#269abc'},
+              {key:'denger',value:'denger',backgroundColor:'#d73925',borderColor:'#d73925'},
+              {key:'warn',value:'warn',backgroundColor:'#f39c12',borderColor:'#e08e0b'}],
+        //remove callback
+        callback:function (data) {$("#console").append("delete node key:"+data+"<br>")}})
+        //add method
+        $("#add").on("click",function () {
+            $("#console").append("add success!!<br>")
+            $("#test").blocks("add",{key:Math.random(),value:Math.random()})
+        }),
+        //getAll method
+        $("#getAll").on("click",function () {
+            $("#console").append($("#test").blocks("getAllBlockCode")+"<br>")
+            alert($("#test").blocks("getAllBlockCode"));
+         })
+</script>
+</html>
