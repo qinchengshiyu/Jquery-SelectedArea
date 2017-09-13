@@ -1,10 +1,13 @@
 /**
  * @Description: this javascript file is to generate choosed block and it's can remove and add or get all
- * @author luoxiaojian (www.qinchengshiyu@foxmail.com)
+ *
+ * @github https://github.com/QCSYSTUDIO/Jquery-BlockShow
+ * @author qcsy(www.qinchengshiyu@foxmail.com)
  * @version 1.0
  * @timestamp 2017/9/12.
  */
 (function ($) {
+    var console = window.console || { log: function () {} };
     var callback;
     var key='id';
     var value='name';
@@ -60,7 +63,11 @@
         $(obj).append(html);
         $("."+$(obj).attr("id")+"_colsebtn").unbind("click")
         $("."+$(obj).attr("id")+"_colsebtn").on("click",function () {
-            callback($(this).parent().attr("id"));
+            try{
+                callback($(this).parent().attr("id"));
+            }catch (e){
+                console.info('without callback!')
+            }
             $(this).parent().remove();
         });
     }
